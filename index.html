@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skye Gunasekaran</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --ink: #1c1a18;
+      --dim: #555048;
+      --muted: #8a847c;
+      --link: #8b2500;
+      --rule: #ccc8c0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ─── LAYOUT ─── */
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ─── HEADER ─── */
+    .hd {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 1.6rem;
+      margin-bottom: 2.6rem;
+      align-items: start;
+    }
+
+    .hd-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 2px;
+      background: #d8d3cb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--muted);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hd-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hd-info h1 {
+      font-size: 1.55rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .hd-info .meta {
+      font-size: 0.88rem;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    section h2 {
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding-bottom: 0.28rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    /* ─── ABOUT ─── */
+    .about p {
+      font-size: 0.93rem;
+      color: var(--dim);
+      margin-bottom: 0.55rem;
+    }
+    .about p:last-child { margin-bottom: 0; }
+
+    /* ─── NEWS ─── */
+    .news-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+    }
+
+    .news-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding-top: 1px;
+      white-space: nowrap;
+    }
+
+    .news-text { color: var(--dim); }
+    .news-text strong { color: var(--ink); }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub {
+      margin-bottom: 1.05rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-title { font-weight: bold; color: var(--ink); }
+
+    .pub-authors {
+      color: var(--dim);
+      margin-top: 0.04rem;
+    }
+
+    .pub-authors .me {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
+    .pub-venue { font-style: italic; color: var(--dim); }
+
+    .pub-links { margin-top: 0.18rem; }
+
+    .pub-links a {
+      color: var(--link);
+      font-size: 0.82rem;
+      margin-right: 0.55rem;
+      text-decoration: none;
+    }
+
+    .pub-links a:hover { text-decoration: underline; }
+
+    .pub-impact {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.08rem;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp {
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .exp-role { font-weight: bold; color: var(--ink); }
+
+    .exp-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-org {
+      color: var(--dim);
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .exp-bullets { list-style: none; padding: 0; }
+
+    .exp-bullets li {
+      padding-left: 1.1em;
+      position: relative;
+      color: var(--dim);
+      margin-bottom: 0.18rem;
+    }
+
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ─── AWARDS / SERVICE ─── */
+    .award-item {
+      display: grid;
+      grid-template-columns: 1fr 70px;
+      gap: 0 0.8rem;
+      margin-bottom: 0.42rem;
+      font-size: 0.9rem;
+      align-items: baseline;
+    }
+
+    .award-name { color: var(--ink); }
+
+    .award-year {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .award-sub {
+      font-style: italic;
+      color: var(--dim);
+      font-size: 0.84rem;
+      display: block;
+    }
+
+    /* ─── EDUCATION ─── */
+    .edu {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree { font-weight: bold; }
+
+    .edu-date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .edu-school { font-style: italic; color: var(--dim); }
+    .edu-gpa { color: var(--dim); margin-top: 0.08rem; }
+    .edu-awards { color: var(--muted); font-size: 0.84rem; margin-top: 0.08rem; }
+
+    /* ─── SKILLS ─── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 0.8rem;
+      margin-bottom: 0.32rem;
+      font-size: 0.88rem;
+    }
+
+    .skill-cat { font-weight: bold; color: var(--ink); }
+    .skill-vals { color: var(--dim); }
+
+    /* ─── LINKS ─── */
+    a { color: var(--link); }
+    a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 480px) {
+      .hd { grid-template-columns: 1fr; }
+      .hd-photo { width: 80px; height: 80px; margin-bottom: 0.9rem; }
+      .award-item { grid-template-columns: 1fr; }
+      .award-year { text-align: left; }
+      .skill-row { grid-template-columns: 1fr; gap: 0; }
+      .skill-cat { margin-bottom: 0.1rem; }
+      .edu-header { flex-direction: column; }
+    }
+  </style>
+  <link rel="stylesheet" href="typography.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div class="hd-photo">
+        <img src="profile.jpg" alt="Skye Gunasekaran" />
+    </div>
+    <div class="hd-info">
+      <h1>Skye Gunasekaran</h1>
+      <div class="meta">
+        she/her/hers<br>
+        AI Researcher<br>
+        <a href="mailto:skye.gunasekaran@gmail.com">skye.gunasekaran@gmail.com</a><br>
+        <a href="https://github.com/SkyeGunasekaran" target="_blank">GitHub</a> &nbsp;&middot;&nbsp;
+        <a href="https://scholar.google.com/citations?user=R_XFG5EAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a> &nbsp;&middot;&nbsp;
+        <a href="https://www.lesswrong.com/users/skye-2" target="_blank">LessWrong</a> &nbsp;&middot;&nbsp;
+      </div>
+    </div>
+  </div>
+
+<!-- ABOUT -->
+<section class="about" aria-labelledby="about-heading">
+  <h2 id="about-heading">About</h2>
+
+<p>
+  I am an AI researcher at Notion building methodologies to understand
+  how AI can remain aligned as capabilities
+  <a href="https://metr.org/time-horizons">grow at an exponential scale</a>.
+  As humans, we are naturally the parents of AI, and as any 
+  good parent, we should instill in AI a sense of compassion, curiosity, 
+  and respect for the world around us.
+  I believe this work, and more broadly solving alignment, is essential to reducing the probability of a
+  <a href="https://ai-2027.com/">catastrophic event</a> from AI systems.
+</p>
+
+  <p>
+    During my undergrad, I published in TMLR, <em>Nature Communications</em>,
+    <em>Nature Computational Science</em>, and <em>APL Machine Learning</em>, as
+    well as the ICLR Tiny Papers track. Due to the slowness of the academic publication process,
+    I now post my research and thougths directly on LessWrong. 
+  </p>
+
+  <p>
+    Aside from my technical work, I believe we have a responsibility to make the world
+    a better place for future generations. At UCSC I built a machine-learning research
+    curriculum serving more than 150 students and delivered the 2026 UCSC Engineering 
+    commencement address, and, I have pledged 10% of my post-tax income to <a href="https://www.givingwhatwecan.org/"> effective charities</a>. 
+  </p>
+</section>
+
+  <section>
+    <h2>News</h2>
+    <div class="news-item">
+      <span class="news-date">Oct 2026</span>
+      <span class="news-text"><strong>Media</strong> &mdash; <a href="https://www.marketplace.org/story/2026/10/08/at-this-san-francisco-picnic-people-share-their-ai-anxieties">Only in San Francisco: A picnic to discuss AI risk</a> </span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Oct 2026</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;SATFormer: Learning When to Use Early Value Residuals in Transformers&rdquo; published in <em>TMLR</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">August 2026</span>
+      <span class="news-text"><strong>New Position</strong> &mdash; AI Researcher @ Notion </span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">July 2026</span>
+      <span class="news-text"><strong>Acquisition</strong> &mdash; ZeroEntropy acquired by Notion </span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">June 2026</span>
+      <span class="news-text"><strong>New Position</strong> &mdash; Research Intern @ ZeroEntropy </span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">May 2026</span>
+      <span class="news-text"><strong>Preprint</strong> &mdash; &ldquo;Transformers with Selective Access to Early Representations&rdquo;</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jan 2026</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;Efficient Knowledge Distillation via Salient Feature Masking&rdquo; published in <em>APL Machine Learning</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Oct 2025</span>
+      <span class="news-text"><strong>Talk</strong> &mdash; &ldquo;A Predictive Approach to Enhance Time-Series Forecasting&rdquo; @ CSE 185S: Technical Writing for Computer Science. <a href=https://youtu.be/XGts4U8BDpc>[Link]</a></span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Sep 2025</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;A Predictive Approach to Enhance Time-Series Forecasting&rdquo; published in <em>Nature Communications</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Sep 2024</span>
+      <span class="news-text"><strong>New Position</strong> &mdash; Lead Tutor at UCSC Baskin Engineering.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jun 2024</span>
+      <span class="news-text"><strong>Journal Publication</strong> &mdash; &ldquo;Bridging the Gap Between Artificial and Natural Intelligence&rdquo; published in <em>Nature Computational Science</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">May 2024</span>
+      <span class="news-text"><strong>Conference Publication</strong>&mdash; &ldquo; Knowledge distillation through time for future event prediction &rdquo; published in <em>The Second Tiny Papers Track at ICLR (2024)</em>.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Jan 2023</span>
+      <span class="news-text"> <strong>New Position</strong> &mdash; Joined the Neuromorphic Computing Group at UC Santa Cruz.</span>
+    </div>
+  </section>
+
+  <!-- BLOGS -->
+  <section>
+    <h2>Blogs</h2>
+    <div class="pub">
+      <div class="pub-title">GPT Models Write Their Own Constitution</div>
+      <div class="pub-venue">LessWrong</div>
+      <div class="pub-links">
+        <a href="https://www.lesswrong.com/posts/ftEMXHAN4BdDBZjoY/gpt-models-write-their-own-constitution-1">[Read]</a>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-title">Shadow Computation Threatens CoT Monitorability</div>
+      <div class="pub-venue">LessWrong</div>
+      <div class="pub-links">
+        <a href="https://www.lesswrong.com/posts/5tyzgTLnNn8qB9rev/shadow-computation-threatens-cot-monitorability">[Read]</a>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-title">AI Needs a Culture</div>
+      <div class="pub-venue">LessWrong</div>
+      <div class="pub-links">
+        <a href="https://www.lesswrong.com/posts/3rigoDkMcKj8f9pGF/ai-needs-a-culture">[Read]</a>
+      </div>
+    </div>
+    <div class="pub">
+      <div class="pub-title">Resistance as First Principles</div>
+      <div class="pub-venue">UC Santa Cruz, Baskin School of Engineering Commencement Speech</div>
+      <div class="pub-links">
+        <a href="resistance-as-first-principles.html">[Read]</a>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Experience</h2>
+    <div class="exp">
+      <div class="exp-header">
+        <span class="exp-role">AI Researcher</span>
+        <span class="exp-date">Aug 2026 &ndash; Present</span>
+      </div>
+      <div class="exp-org">Notion</div>
+    </div>
+    <div class="exp">
+      <div class="exp-header">
+        <span class="exp-role">Research Intern</span>
+        <span class="exp-date">Jun 2026 &ndash; July 2026</span>
+      </div>
+      <div class="exp-org">ZeroEntropy</div>
+    </div>
+    <div class="exp">
+      <div class="exp-header">
+        <span class="exp-role">Undergraduate Researcher</span>
+        <span class="exp-date">Jan 2023 &ndash; Jun 2026</span>
+      </div>
+      <div class="exp-org">Neuromorphic Computing Group, UC Santa Cruz</div>
+    </div>
+  </section>
+
+   <!-- PUBLICATIONS -->
+  <section>
+    <h2>Publications</h2>
+
+    <div class="pub">
+      <div class="pub-title">SATFormer: Learning When to Use Early Value Residuals in Transformers</div>
+      <div class="pub-authors"><span class="me">S. Gunasekaran</span>, T. Wright, R.-J. Zhu, J. K. Eshraghian</div>
+      <div class="pub-venue">Transactions on Machine Learning Research.</div>
+      <div class="pub-links"><a href="https://arxiv.org/pdf/2605.03953">[Link]</a></div>
+    </div>
+    
+    <div class="pub">
+      <div class="pub-title">Efficient Knowledge Distillation via Salient Feature Masking</div>
+      <div class="pub-authors">A. Kembay, <span class="me">S. Gunasekaran</span>, R.-J. Zhu, Y. Zhang, J. K. Eshraghian</div>
+      <div class="pub-venue">APL Machine Learning, 4, 016104 (2026)</div>
+      <div class="pub-links"><a href="https://watermark02.silverchair.com/016104_1_5.0312051.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAABaMwggWfBgkqhkiG9w0BBwagggWQMIIFjAIBADCCBYUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMhvXBtLWmayjrDZw5AgEQgIIFVsVGN4bKsZPrTTWHaEv6ZV1WpA1NpMbURAfcSLGojOXy2sJzi7rlOSUpE3_svL1hAiBxiwZGtelofQCq3OQoqcxmP1zVzoe3qL_cKeKHcjSPGGtzdLuqNdgEib8wsIGH7PYiE33pAaMOWZIOhyz3bUayonRmceS6d-8s1W40oUwgRZuJqYgjPmLi84mWavzueKhPy2C1tQ7Xui4uuXy71yuKaSVEM6GAk5yMIBNHDf34sIOaRtrfQXKmw28ca4gcMcgyDTnVoONPLdB88yMSuJyzEifWc8OBIlaTKP7wetJyZBLu3NQK-KWzUyFg8HBlxZZFQSKd3VfrW_t5j1mHDKMO-51SR407Dmf3IAxkdtOztk8e_JTbmd7FObBTj1vr-bHw2M4cA4afICj7SVj0E4ac9QSwqX61FsM2cXGxeTulw_nMBbEl9AgxNrzo0itgIgDLMsbMIHTfRmVweT5P2q9FW6mM0EakD9VvR_wQ3EBWV6uPPCSsuq7ZpGME9SWBbgKWeVArAu_T9dKi4e7otvNbiIGUAmPOXIKYRQfKYap2uYd7z0CMQYRVRnTy9P5InLWru9D2IRJonb7NFnOAlE7z7IgWZXo0oAkA4AV0moOdsoVZxmeFTqWW1AkTkk0zZIKU2hCE0ijiKQF05Ag50p0_KSW3zaty7pBU9HJAW3mMTrmryDg5Cz_uf9O4dQm_Fz3xDv13g5pHyWrPGq6UW0F5nJ2JqJCvmXzqeAs_Z_UtOTQDYct-tG55lFrSNxqAphPeUapK-E_6UU46DBrPqAvVJeZUYplFR4zHndJvdI-8W-W5sgEkjnCXgLGPFCxIBIERx4cXmR26aatq8OVHmCHKOcWeCihYjyjguRQ92TtoYnQa_K2fos0rKyD_eN17aG65VCzeHXm2kY9fhiQvgyQPiWWweBAsR3Pr1BBtmLfxqilbwMg-9jROF2oUQKcF-beHbu2T1rUlcpWnjqdq0_o7zNKMove4kZav8vZyUEO1KPgUZR9HeFUzRsy1cqUm84ccB87AHyaGQ0uaA5Tqw6uO1P8hHUL6CrTytcqh_-ke_aYh1vSHr0Zbr7BGuBRY-bGCPNCmJWnwswRUCoR9lRP4ERbRmYIloiFIFpNykKXpkGkg-3fmx7PeCgX1Ygtwe08f3vgzZhYnv2a3jIP2cRBCoHL9rl0DKn1BH44IJS3Lg5H2yYERBhgv1NMtQj2fGlHLcHUtzaWWl50OwzYh0ksH0JtWtXpZklGKTqu_nTfdF2n3ohGE_Fm-e9ecWXFXmd8rduBudfbfI-CD4S9e2IfNZGjcJzKhvPYG0rW4NOzFmqePDtBL28vqIRGlMuk1eSOTn0cPVQ9xA-m6ANzcmlG-riFJDEO7UHg5OEEUVvHmrkYHS4_KTVtCi8Gq3uZyX4nnHRXiRG1Ro-mespLNgsmuRP4sjS27ViE3QhnTjmqy050hwpM6sSXTVJbhm2nz2L6fn02WyJxbXLnTS0DxMs3svAAs7sNJWoiWnB9_XhecTX2F-h0E0EUrRQFXq0ln-4cyDdKZRSjk1Pu1N7VuiXG-BMv7YxaPPkJHPh3sQ6RhueX0YPuQd2D5UlIhAeWeK781Cj87tb5CHnakvGuHlt2hER__kVdDurgOYdjT8Acs7PYUUD8k55Qb-evDLYMLROB7lH4E6a_oIsAUweR3Tya03HQ2m8WMNK0Mp_Jd7gvY009ceov6-OZ9Zclm1M6g7zipyebfINAnE4KlWqU0aP8fyL_ANHGnr6_zy0oApueOY0UlF3cKJ5qKz7M9glNrUQKYD0_iZNV01M1sSl_drk0yCU-bIJY">[Link]</a></div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">A Predictive Approach to Enhance Time-Series Forecasting</div>
+      <div class="pub-authors"><span class="me">S. Gunasekaran</span>, A. Kembay, H. Ladret, R. J. Zhu, L. Perrinet, O. Kavehei, J. Eshraghian</div>
+      <div class="pub-venue">Nature Communications, 16, 8645 (2025)</div>
+      <div class="pub-links"><a href=https://www.nature.com/articles/s41467-025-63786-4>[Link]</a></div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">Bridging the Gap Between Artificial Intelligence and Natural Intelligence</div>
+      <div class="pub-authors">R. J. Zhu, <span class="me">S. Gunasekaran</span>, J. Eshraghian</div>
+      <div class="pub-venue">Nature Computational Science, 4, 559 (2024)</div>
+      <div class="pub-links"><a href=https://www.nature.com/articles/s43588-024-00677-6>[Link]</a></div>
+
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">Knowledge Distillation Through Time for Future Event Prediction</div>
+      <div class="pub-authors"><span class="me">S. Gunasekaran</span>, J. Eshraghian, R. Zhu, Z. Kuncic</div>
+      <div class="pub-venue">In the Second Tiny Papers Track at ICLR (2024)</div>
+      <div class="pub-links"><a href=https://openreview.net/pdf?id=JBSMl0nAFa>[Link]</a></div>
+    </div>
+
+  </section>
+
+
+  <!-- AWARDS -->
+  <section>
+    <h2>Awards &amp; Service</h2>
+    <div class="award-item">
+      <div><span class="award-name">NSF REU Fellowship</span><span class="award-sub">National Science Foundation</span></div>
+      <span class="award-year">2025</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Mantey Leadership Award</span><span class="award-sub">UC Santa Cruz</span></div>
+      <span class="award-year">2025</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Goldwater Nominee</span><span class="award-sub">Barry Goldwater Scholarship Program</span></div>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Dean&rsquo;s Award</span><span class="award-sub">Baskin School of Engineering, UCSC</span></div>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Koret Scholarship (&#xd7;2)</span><span class="award-sub">Koret Foundation</span></div>
+      <span class="award-year">2023–24</span>
+    </div>
+    <div class="award-item">
+      <div><span class="award-name">Reviewer</span><span class="award-sub">ICLR 2026 Agents In The Wild</span></div>
+      <span class="award-year">2026</span>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2>Education</h2>
+    <div class="edu">
+      <div class="edu-header">
+        <span class="edu-degree">B.S. Computer Science</span>
+        <span class="edu-date">Sep 2022 &ndash; Jun 2026</span>
+      </div>
+      <div class="edu-school">University of California, Santa Cruz</div>
+      <div class="edu-gpa">GPA: 3.65</div>
+    </div>
+
+  </section>
+
+  <footer>
+    Last updated Nov 2026
+  </footer>
+
+</div>
+</body>
+</html>
